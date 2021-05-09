@@ -1,9 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:shoes_app/models/Shoes.dart';
+import 'package:shoes_app/pages/DetailShoesPage.dart';
 import 'package:shoes_app/widgets/ShoesItem.dart';
 
 class ListShoesPage extends StatelessWidget {
-  const ListShoesPage({Key key}) : super(key: key);
+  final ValueNotifier<bool> notifierBottomBarVisible = ValueNotifier(true);
+
+  void _onShoesPressed(Shoes item, BuildContext context) async {
+    notifierBottomBarVisible.value = false;
+    await Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, animation1, animation2) {
+          return FadeTransition(
+            opacity: animation1,
+            child: DetailShoesPage(
+              item: item,
+            ),
+          );
+        },
+      ),
+    );
+    notifierBottomBarVisible.value = true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +46,9 @@ class ListShoesPage extends StatelessWidget {
                       final shoesItem = shoes[index];
                       return ShoesItem(
                         item: shoesItem,
+                        onTap: () {
+                          _onShoesPressed(shoesItem, context);
+                        },
                       );
                     },
                   ),
@@ -35,11 +56,8 @@ class ListShoesPage extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            height: kToolbarHeight,
+          ValueListenableBuilder<bool>(
+            valueListenable: notifierBottomBarVisible,
             child: Row(
               children: [
                 Expanded(
@@ -59,6 +77,16 @@ class ListShoesPage extends StatelessWidget {
                 ),
               ],
             ),
+            builder: (context, value, child) {
+              return AnimatedPositioned(
+                duration: const Duration(milliseconds: 200),
+                left: 0,
+                right: 0,
+                bottom: value ? 0.0 : -kToolbarHeight,
+                height: kToolbarHeight,
+                child: child,
+              );
+            },
           ),
         ],
       ),

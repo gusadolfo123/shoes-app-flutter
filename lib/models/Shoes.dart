@@ -18,7 +18,7 @@ class Shoes {
 
 final shoes = <Shoes>[
   Shoes(
-    model: "AIR MAX 90 EZ BLACK",
+    model: "AIR MAX 90 EZ BLACK 1",
     currentPrice: 149,
     oldPrice: 299,
     images: [
@@ -30,7 +30,7 @@ final shoes = <Shoes>[
     color: 0xFFF6F6F6,
   ),
   Shoes(
-    model: "AIR MAX 90 EZ BLACK",
+    model: "AIR MAX 90 EZ BLACK 2",
     currentPrice: 180,
     oldPrice: 445,
     images: [
@@ -42,7 +42,7 @@ final shoes = <Shoes>[
     color: 0xFFFCF5EB,
   ),
   Shoes(
-    model: "AIR MAX 90 EZ BLACK",
+    model: "AIR MAX 90 EZ BLACK 3",
     currentPrice: 149,
     oldPrice: 299,
     images: [
@@ -54,7 +54,7 @@ final shoes = <Shoes>[
     color: 0xFFFEF7ED,
   ),
   Shoes(
-    model: "AIR MAX 90 EZ BLACK",
+    model: "AIR MAX 90 EZ BLACK 4",
     currentPrice: 149,
     oldPrice: 299,
     images: [
